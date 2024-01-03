@@ -75,7 +75,7 @@ chmod +x SUM_verifier.sh
 ./SUM_verifier.sh
 ```
 3. Follow the instructions 
-1. Spefiy the location of the programme/script 
+- Spefiy the location of the programme/script 
 
 * A programme in the same directory with the script : 
 
@@ -89,7 +89,7 @@ chmod +x SUM_verifier.sh
 ./SUM_verifier.sh
 $HOME/Downloads/harmful.sh
 ```
-2. Enter md5 provided by the program's OWNER (Official : website,github ...),exemple : 
+- Enter md5 provided by the program's OWNER (Official : website,github ...),exemple : 
 ```bash
 65a8e27d8879283831b664bd8b7f0ad4
 ```
