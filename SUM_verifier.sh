@@ -10,13 +10,13 @@ BCyan='\033[1;36m'        # Cyan
 #---End Fonts colors 
 echo -e "${BGreen}Easy MD5 ${Reset}"
 # Specify the program path
-echo "Enter The Programme Path :"
-echo -e "in local directory => ./[NAME]            ${BYellow}Example : ./harmless.py${Reset}"
-echo -e "in other directory  => [FULL_PATH]/[NAME] ${BWhite}Example :  /bin/gcc${Reset}"
+echo "Enter the Programme location (in/outside this directory) :"
+echo -e "In :  => ./[NAME]            ${BYellow}Example : ./harmless.py${Reset}"
+echo -e "Outside  => [FULL_PATH]/[NAME] ${BWhite}Example :  /bin/gcc${Reset}"
 read program
 # check if programme exist
 if test -f "$program"; then
-echo "Enter md5 provided by the program's OWNER (Official : website,github repo ...)\n"
+echo "Enter md5 provided by the program's OWNER (Official : website,github ...)"
 # get  checksum from user
 read program_checksum
 

@@ -1,13 +1,13 @@
 <div align="center" id="readme-top">
-  <h1 align="center">Easymd5checksum</h1>
- <a href="hhttps://github.com/X00Byte/Easymd5checksum">
-    <img src="https://github.com/X00Byte/Easymd5checksum/blob/main/repo_background.png" alt="Logo">
+  <h1 align="center">SUM_verifier</h1>
+ <a href="hhttps://github.com/X00Byte/SUM_verifier">
+    <img src="https://github.com/X00Byte/SUM_verifier/blob/main/repo_background.png" alt="Logo">
   </a>
   <p align="center">
     Check If the New Downloded programme legitimet or modefied!
     <br />    ·
-    <a href="https://github.com/X00Byte/Easymd5checksum/issues">Report Bug</a>
-    <a href="https://github.com/X00Byte/Easymd5checksum/issues">Request Feature</a>
+    <a href="https://github.com/X00Byte/SUM_verifier/issues">Report Bug</a>
+    <a href="https://github.com/X00Byte/SUM_verifier/issues">Request Feature</a>
   </p>
 </div>
 
@@ -33,7 +33,7 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-A shell script that automate the processe of check md5 of a script/programme ..
+A shell script that automate the processe of check md5 of a script/programme
 
 ### Built With
 
@@ -42,18 +42,57 @@ A shell script that automate the processe of check md5 of a script/programme ..
 <!-- GETTING STARTED -->
 ## Getting Started
 
-To Run this scprit you need a Linux machine (with relatively new version of bash interpreter)
+To Run this scprit you need :
+- Linux machine with : 
+1. Bash interpreter , you can check with :
+```bash
+echo $SHELL
+```
+or
+```bash
+bash -v
+```
+or 
+```bash
+whereis bash
+```
+2. md5sum , you can check with
+```bash
+md5sum --help
+```
 
 ### Usage
 
-_Below is an example of how you can run the script 
+1. Open the terminal 
 
-1. Open the terminal & cLone this repo
-2. cd to the repo's directory & open the terminalin the same directory
-3. chmod +x checksum.sh && ./checksum.sh
-4. Specify the Programme/script that you want test (Put it in the same Dir of the script or get it full path )
-5. Follow the instructions
+```bash
+git clone https://github.com/X00Byte/SUM_verifier.git
+cd SUM_verifier
+```
+2. Change permession and execute :
+```bash
+chmod +x SUM_verifier.sh
+./SUM_verifier.sh
+```
+3. Follow the instructions 
+1. Spefiy the location of the programme/script 
 
+* A programme in the same directory with the script : 
+
+```bash
+./SUM_verifier.sh
+./harmless.py
+```
+* A programme located outside the script's directory : 
+
+```bash
+./SUM_verifier.sh
+$HOME/Downloads/harmful.sh
+```
+2. 
+Enter md5 provided by the program's OWNER (Official : website,github ...)
+exemple : 65a8e27d8879283831b664bd8b7f0ad4
+3. Wait for the result 
 ## License
 
 Distributed under the GPL3 License. See `LICENSE.txt` for more information.
