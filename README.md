@@ -4,7 +4,7 @@
     <img src="https://github.com/X00Byte/SUM_verifier/blob/main/repo_background.png" alt="Logo">
   </a>
   <p align="center">
-    Check If the New Downloded programme legitimet or modefied!
+    Check if a script/programme legitimet or modefied!
     <br />    ·
     <a href="https://github.com/X00Byte/SUM_verifier/issues">Report Bug</a>
     <a href="https://github.com/X00Byte/SUM_verifier/issues">Request Feature</a>
@@ -89,9 +89,10 @@ chmod +x SUM_verifier.sh
 ./SUM_verifier.sh
 $HOME/Downloads/harmful.sh
 ```
-2. 
-Enter md5 provided by the program's OWNER (Official : website,github ...)
-exemple : 65a8e27d8879283831b664bd8b7f0ad4
+2. Enter md5 provided by the program's OWNER (Official : website,github ...),exemple : 
+```bash
+65a8e27d8879283831b664bd8b7f0ad4
+```
 3. Wait for the result 
 ## License
 
