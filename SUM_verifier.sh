@@ -8,21 +8,31 @@ BWhite='\033[1;37m'       # White
 BYellow='\033[1;33m'      # Yellow
 BCyan='\033[1;36m'        # Cyan
 #---End Fonts colors 
+#No arrguments :
+if [ "$#" -lt 1 ]; then
 echo -e "${BGreen}Easy MD5 ${Reset}"
-# Specify the program path
+# get the program path
 echo "Enter the Programme location (in/outside this directory) :"
 echo -e "In :  => ./[NAME]            ${BYellow}Example : ./harmless.py${Reset}"
 echo -e "Outside  => [FULL_PATH]/[NAME] ${BWhite}Example :  /bin/gcc${Reset}"
 read program
-# check if programme exist
-if test -f "$program"; then
-echo "Enter md5 provided by the program's OWNER (Official : website,github ...)"
 # get  checksum from user
+echo "Enter md5 provided by the program's OWNER (Official : website,github ...)"
 read program_checksum
+else
+program=$1
+program_checksum=$2
+fi
 
+# *) check if programme exist
+if ! test -f "$program"; then
+    echo -e "${BRed}The $program does not exist ,Retry again ...${Reset}"
+    exit 1
+fi
 # Calculate the actual checksum
 actual_checksum=$(md5sum "$program" | awk '{print $1}')
-#echo the checksum
+#clear the screen for better focus & print result
+clear
 echo "The Programme             : $program"
 echo "The checksum given By you : $program_checksum"
 echo "The actual checksum       : $actual_checksum"
@@ -32,8 +42,3 @@ if [[ "$actual_checksum" == "$program_checksum" ]]; then
 else
     echo -e "${BRed}Checksum is invalid. The program may be modified or corrupted.${Reset}"
 fi
-#if not exist
-else 
-    echo -e "${BRed}Are you playing with me sir ? ,${BCyan}The $program does not exist -______-${Reset}"
-fi
-
