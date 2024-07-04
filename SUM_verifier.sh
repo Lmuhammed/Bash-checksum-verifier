@@ -26,6 +26,36 @@ check_program_installed() {
     fi
 }
 
+#check checksumAlgo
+
+func_checksumAlgo() {
+checksumAlgo=$1
+ case $checksumAlgo in
+    "md5")
+        check_program_installed md5sum
+        actual_checksum=$(md5sum "$program" | awk '{print $1}')
+        ;;
+    "s1")
+        check_program_installed sha1sum
+        actual_checksum=$(sha1sum "$program" | awk '{print $1}')
+        ;;
+    "s2")
+        check_program_installed sha256sum
+        actual_checksum=$(sha256sum "$program" | awk '{print $1}')
+        ;;
+    *)
+        my_array=("md5" "sha1" "sha256")
+        # Loop over the array elements and print them
+        echo -e "${BRed}Invalid Checksum algorithms ${Reset},supported :"
+        for AllowedAlgos in "${my_array[@]}"
+        do
+            echo -e "${BGreen}$AllowedAlgos${Reset}"
+        done
+        exit 2
+        ;;
+esac
+}
+
 #No arrguments :
 if [ "$#" -lt 3 ]; then
 echo "Sum veriefer"
@@ -51,30 +81,7 @@ if ! test -f "$program"; then
 fi
 
 # Case statement to check the checksumAlgo and Calculate the actual checksum
-case $checksumAlgo in
-    "md5")
-        check_program_installed md5sum
-        actual_checksum=$(md5sum "$program" | awk '{print $1}')
-        ;;
-    "s1")
-        check_program_installed sha1sum
-        actual_checksum=$(sha1sum "$program" | awk '{print $1}')
-        ;;
-    "s2")
-        check_program_installed sha256sum
-        actual_checksum=$(sha256sum "$program" | awk '{print $1}')
-        ;;
-    *)
-        my_array=("md5" "sha1" "sha256")
-        # Loop over the array elements and print them
-        echo -e "${BRed}Invalid Checksum algorithms ${Reset},supported :"
-        for AllowedAlgos in "${my_array[@]}"
-        do
-            echo -e "${BGreen}$AllowedAlgos${Reset}"
-        done
-        exit 2
-        ;;
-esac
+func_checksumAlgo $checksumAlgo
 
 #clear the screen for better focus & print result
 clear
