@@ -14,14 +14,17 @@ BCyan='\033[1;36m'        # Cyan
 
 #---End Fonts colors 
 
-#check if md5sum installed 
-if ! command -v md5sum &> /dev/null
-then
-    echo -e "${BRed}md5sum required for this script .${Reset}"
-    echo "install it and retry ."
-    exit 22
-fi
-#end check 
+#check if hashing programmes installed 
+ 
+check_program_installed() {
+    program_name=$1
+    if ! command -v $program_name &> /dev/null
+    then
+        echo -e "${BRed}$program_name required for this script .${Reset}"
+        echo "install it and retry ."
+        exit 22
+    fi
+}
 
 #No arrguments :
 if [ "$#" -lt 3 ]; then
@@ -46,18 +49,19 @@ if ! test -f "$program"; then
     echo -e "${BRed}The $program does not exist ,Recheck the Path ...${Reset}"
     exit 2
 fi
-# Calculate the actual checksum
-#actual_checksum=$(md5sum "$program" | awk '{print $1}')
 
-# Case statement to check the checksumAlgo
+# Case statement to check the checksumAlgo and Calculate the actual checksum
 case $checksumAlgo in
     "md5")
+        check_program_installed md5sum
         actual_checksum=$(md5sum "$program" | awk '{print $1}')
         ;;
     "s1")
+        check_program_installed sha1sum
         actual_checksum=$(sha1sum "$program" | awk '{print $1}')
         ;;
     "s2")
+        check_program_installed sha256sum
         actual_checksum=$(sha256sum "$program" | awk '{print $1}')
         ;;
     *)
