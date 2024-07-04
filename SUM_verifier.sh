@@ -16,6 +16,20 @@ BCyan='\033[1;36m'        # Cyan
 
 #check if hashing programmes installed 
  
+help_menu() {
+echo "Sum veriefer"
+echo "Usage: $0 [checksumAlgo] {program} [md5Hash]"
+echo "checksumAlgo :"
+echo "md5          "
+echo "s1           :    sha1"
+echo "s2           :    sha256"
+echo -e "${BGreen}Exemples : ${Reset}"
+echo "$0 $HOME/Downloads/app.sh      6d18504f70aa38ae1e6e17b2b791d874"
+echo "$0 ./app.sh                        6d18504f70aa38be1e6e17b2b791d874"
+}
+ 
+#check if hashing programmes installed 
+ 
 check_program_installed() {
     program_name=$1
     if ! command -v $program_name &> /dev/null
@@ -26,6 +40,15 @@ check_program_installed() {
     fi
 }
 
+test_file_exist(){
+    program=$1
+    # *) check if programme exist
+if ! test -f "$program"; then
+    echo -e "${BRed}The $program does not exist ,Recheck the Path ...${Reset}"
+    exit 2
+fi
+
+}
 #check checksumAlgo
 
 func_checksumAlgo() {
@@ -56,33 +79,7 @@ checksumAlgo=$1
 esac
 }
 
-#No arrguments :
-if [ "$#" -lt 3 ]; then
-echo "Sum veriefer"
-echo "Usage: $0 [checksumAlgo] {program} [md5Hash]"
-echo "checksumAlgo :"
-echo "md5          :"
-echo "s1           :    sha1"
-echo "s2           :    sha256"
-echo -e "${BGreen}Exemples : ${Reset}"
-echo "$0 $HOME/Dowloads/app.sh      6d18504f70aa38ae1e6e17b2b791d874"
-echo "$0 ./app.sh                   6d18504f70aa38be1e6e17b2b791d874"
-exit 2
-else
-checksumAlgo=$1
-program=$2
-program_checksum=$3
-fi
-
-# *) check if programme exist
-if ! test -f "$program"; then
-    echo -e "${BRed}The $program does not exist ,Recheck the Path ...${Reset}"
-    exit 2
-fi
-
-# Case statement to check the checksumAlgo and Calculate the actual checksum
-func_checksumAlgo $checksumAlgo
-
+result() {
 #clear the screen for better focus & print result
 clear
 echo "The Programme             : $program"
@@ -94,3 +91,21 @@ if [[ "$actual_checksum" == "$program_checksum" ]]; then
 else
     echo -e "${BRed}Checksum is invalid. The program may be modified or corrupted.${Reset}"
 fi
+
+}
+#if no arrguments passed:
+if [ "$#" -lt 3 ]; then
+help_menu
+exit 2
+fi
+
+#get vars
+checksumAlgo=$1
+program=$2
+program_checksum=$3
+#check if file exist
+test_file_exist $program
+# test checksum
+func_checksumAlgo $checksumAlgo
+#print result after calulate
+result
