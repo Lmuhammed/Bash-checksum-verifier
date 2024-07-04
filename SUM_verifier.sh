@@ -1,24 +1,26 @@
 #!/bin/bash
+
 #Fonts colors
-Reset='\e[0m' #Use after Colors To not colorise the after lines 
-#Fonts :
+Reset='\e[0m'             #Use after Colors To not colorise the next lines 
+
+#Font colors :
+
 BRed='\033[1;31m'         # Red
 BGreen='\033[1;32m'       # Green
 BWhite='\033[1;37m'       # White
 BYellow='\033[1;33m'      # Yellow
 BCyan='\033[1;36m'        # Cyan
+
 #---End Fonts colors 
+
 #No arrguments :
 if [ "$#" -lt 1 ]; then
-echo -e "${BGreen}Easy MD5 ${Reset}"
-# get the program path
-echo "Enter the Programme location (in/outside this directory) :"
-echo -e "In :  => ./[NAME]            ${BYellow}Example : ./harmless.py${Reset}"
-echo -e "Outside  => [FULL_PATH]/[NAME] ${BWhite}Example :  /bin/gcc${Reset}"
-read program
-# get  checksum from user
-echo "Enter md5 provided by the program's OWNER (Official : website,github ...)"
-read program_checksum
+echo "Sum veriefer"
+echo "Usage: $0 {program} [md5Hash]"
+echo -e "${BGreen}Exemples : ${Reset}"
+echo "$0 $HOME/Dowloads/app.sh      6d18504f70aa38ae1e6e17b2b791d874"
+echo "$0 ./app.sh                   6d18504f70aa38be1e6e17b2b791d874"
+exit 2
 else
 program=$1
 program_checksum=$2
