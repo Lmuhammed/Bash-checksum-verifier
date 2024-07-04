@@ -65,7 +65,13 @@ case $checksumAlgo in
         actual_checksum=$(sha256sum "$program" | awk '{print $1}')
         ;;
     *)
-        echo -e "${BRed}Invalid Checksum ${Reset}"
+        my_array=("md5" "sha1" "sha256")
+        # Loop over the array elements and print them
+        echo -e "${BRed}Invalid Checksum algorithms ${Reset},supported :"
+        for AllowedAlgos in "${my_array[@]}"
+        do
+            echo -e "${BGreen}$AllowedAlgos${Reset}"
+        done
         exit 2
         ;;
 esac
