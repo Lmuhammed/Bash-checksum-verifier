@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 #Fonts colors
 Reset='\e[0m'             #Use after Colors To not colorise the next lines 
 
@@ -12,6 +13,15 @@ BYellow='\033[1;33m'      # Yellow
 BCyan='\033[1;36m'        # Cyan
 
 #---End Fonts colors 
+
+#check if md5sum installed 
+if ! command -v md5sum &> /dev/null
+then
+    echo -e "${BRed}md5sum required for this script .${Reset}"
+    echo "install it and retry ."
+    exit 22
+fi
+#end check 
 
 #No arrguments :
 if [ "$#" -lt 1 ]; then
@@ -28,8 +38,8 @@ fi
 
 # *) check if programme exist
 if ! test -f "$program"; then
-    echo -e "${BRed}The $program does not exist ,Retry again ...${Reset}"
-    exit 1
+    echo -e "${BRed}The $program does not exist ,Recheck the Path ...${Reset}"
+    exit 2
 fi
 # Calculate the actual checksum
 actual_checksum=$(md5sum "$program" | awk '{print $1}')

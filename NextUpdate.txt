@@ -1,2 +1,0 @@
-Adding support for SHA256
-Add help menu
