@@ -24,8 +24,12 @@ echo "md5          "
 echo "s1           :    sha1"
 echo "s2           :    sha256"
 echo -e "${BGreen}Exemples : ${Reset}"
-echo "$0 $HOME/Downloads/app.sh      6d18504f70aa38ae1e6e17b2b791d874"
-echo "$0 ./app.sh                        6d18504f70aa38be1e6e17b2b791d874"
+echo "______________________________________"
+
+echo "$0 $HOME/app.sh     md5     6d18504f70aa38ae1e6e17b2b791d874"
+echo "$0 ./app.sh               s2      3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+
+echo "______________________________________"
 }
  
 #check if hashing programmes installed 
