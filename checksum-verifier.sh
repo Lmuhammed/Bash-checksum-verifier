@@ -11,18 +11,38 @@ BYellow='\033[1;33m'      # Yellow
 BCyan='\033[1;36m'        # Cyan
 #---End Fonts colors 
 
+#print_banner
+print_banner (){
+
+cat <<EOF
+
+
+ ▗▄▄▖▐▌   ▗▞▀▚▖▗▞▀▘█  ▄  ▄▄▄ █  ▐▌▄▄▄▄      ▄   ▄ ▗▞▀▚▖ ▄▄▄ ▄ ▗▞▀▀▘▄ ▗▞▀▚▖ ▄▄▄ 
+▐▌   ▐▌   ▐▛▀▀▘▝▚▄▖█▄▀  ▀▄▄  ▀▄▄▞▘█ █ █     █   █ ▐▛▀▀▘█    ▄ ▐▌   ▄ ▐▛▀▀▘█    
+▐▌   ▐▛▀▚▖▝▚▄▄▖    █ ▀▄ ▄▄▄▀      █   █      ▀▄▀  ▝▚▄▄▖█    █ ▐▛▀▘ █ ▝▚▄▄▖█    
+▝▚▄▄▖▐▌ ▐▌         █  █                                     █ ▐▌   █           
+
+
+EOF
+echo -e "${BGreen} Compare file/program hashes to verify their integrity
+${Reset}"
+
+}
+
 #help menu  
+
 help_menu() {
-echo "Sum veriefer"
-echo "Usage: $0 [Checksum Algorithm ] {program} [Hash]"
-echo "checksumAlgo :"
-echo "md5          "
-echo "s1           :    sha1"
-echo "s2           :    sha256"
-echo -e "${BGreen}Exemples : ${Reset}"
+echo "Usage: $0 [Hashing Algorithm ] {program} [Hash]"
+echo "Hashing Algorithm :"
+echo "m            :    md5 "
+echo "s1           :    sha1 "
+echo "s2           :    sha256 "
+
 echo "______________________________________"
 
-echo "$0 md5        $HOME/app.sh       6d18504f70aa38ae1e6e17b2b791d874"
+
+echo -e "${BGreen}Exemples : ${Reset}"
+echo "$0 m        $HOME/app.sh       6d18504f70aa38ae1e6e17b2b791d874"
 echo "$0 s2     ./app.sh        3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
 
 echo "______________________________________"
@@ -52,7 +72,7 @@ fi
 func_checksumAlgo() {
 checksumAlgo=$1
  case $checksumAlgo in
-    "md5")
+    "m")
         check_program_installed md5sum
         actual_checksum=$(md5sum "$program" | awk '{print $1}')
         ;;
@@ -90,6 +110,8 @@ else
 fi
 
 }
+
+print_banner
 #if no arrguments passed:
 if [ "$#" -lt 3 ]; then
 help_menu
