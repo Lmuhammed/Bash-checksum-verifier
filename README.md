@@ -43,6 +43,8 @@ chmod 700 ./checksum-verifier
 ```bash
 ./checksum-verifier
 ```
+- إتبع التعليمات
+
 
 ### المساهمة
 

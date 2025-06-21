@@ -1,24 +1,20 @@
 #!/bin/bash
 
-
 #Fonts colors
 Reset='\e[0m'             #Use after Colors To not colorise the next lines 
 
 #Font colors :
-
 BRed='\033[1;31m'         # Red
 BGreen='\033[1;32m'       # Green
 BWhite='\033[1;37m'       # White
 BYellow='\033[1;33m'      # Yellow
 BCyan='\033[1;36m'        # Cyan
-
 #---End Fonts colors 
 
-#check if hashing programmes installed 
- 
+#help menu  
 help_menu() {
 echo "Sum veriefer"
-echo "Usage: $0 [checksumAlgo] {program} [md5Hash]"
+echo "Usage: $0 [Checksum Algorithm ] {program} [Hash]"
 echo "checksumAlgo :"
 echo "md5          "
 echo "s1           :    sha1"
@@ -26,14 +22,13 @@ echo "s2           :    sha256"
 echo -e "${BGreen}Exemples : ${Reset}"
 echo "______________________________________"
 
-echo "$0 $HOME/app.sh     md5     6d18504f70aa38ae1e6e17b2b791d874"
-echo "$0 ./app.sh               s2      3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+echo "$0 md5        $HOME/app.sh       6d18504f70aa38ae1e6e17b2b791d874"
+echo "$0 s2     ./app.sh        3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
 
 echo "______________________________________"
 }
  
 #check if hashing programmes installed 
- 
 check_program_installed() {
     program_name=$1
     if ! command -v $program_name &> /dev/null
@@ -54,7 +49,6 @@ fi
 
 }
 #check checksumAlgo
-
 func_checksumAlgo() {
 checksumAlgo=$1
  case $checksumAlgo in
@@ -72,8 +66,7 @@ checksumAlgo=$1
         ;;
     *)
         my_array=("md5" "sha1" "sha256")
-        # Loop over the array elements and print them
-        echo -e "${BRed}Invalid Checksum algorithms ${Reset},supported :"
+        echo -e "${BRed}Invalid Checksum algorithm ${Reset},supported algorithms :"
         for AllowedAlgos in "${my_array[@]}"
         do
             echo -e "${BGreen}$AllowedAlgos${Reset}"
@@ -91,9 +84,9 @@ echo "The checksum given By you : $program_checksum"
 echo "The actual checksum       : $actual_checksum"
 # Compare the checksums
 if [[ "$actual_checksum" == "$program_checksum" ]]; then
-    echo -e "${BGreen}Checksum is valid. The program is not modified.${Reset}"
+    echo -e "${BGreen}Success: The hashes are equal; the program/file has not been modified. ${Reset}"
 else
-    echo -e "${BRed}Checksum is invalid. The program may be modified or corrupted.${Reset}"
+    echo -e "${BRed}Error : The hashes are not equal; the program/file may have been modified  ${Reset}"
 fi
 
 }
